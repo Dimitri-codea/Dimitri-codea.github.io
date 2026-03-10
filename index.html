@@ -70,16 +70,21 @@
             padding: 0;
         }
 
-        .toggle::before {
-            content: '☀️';
+        .toggle-icon {
             position: absolute;
             top: 50%;
-            left: 6px;
             transform: translateY(-50%);
             font-size: 10px;
             line-height: 1;
-            transition: opacity 0.3s ease;
-            opacity: 1;
+            z-index: 0;
+        }
+
+        .toggle-icon.sun {
+            left: 6px;
+        }
+
+        .toggle-icon.moon {
+            right: 6px;
         }
 
         .toggle::after {
@@ -91,7 +96,7 @@
             height: 18px;
             background-color: white;
             border-radius: 50%;
-            transition: transform 0.3s ease, background-color 0.3s ease;
+            transition: transform 0.3s ease;
             z-index: 1;
         }
 
@@ -99,16 +104,8 @@
             background-color: var(--accent);
         }
 
-        [data-theme="dark"] .toggle::before {
-            content: '🌙';
-            left: auto;
-            right: 6px;
-            opacity: 1;
-        }
-
         [data-theme="dark"] .toggle::after {
             transform: translateX(20px);
-            background-color: white;
         }
 
         .dot {
@@ -241,7 +238,10 @@
 </head>
 <body>
     <div class="container">
-        <button class="toggle" onclick="toggleTheme()" aria-label="Toggle dark mode"></button>
+        <button class="toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+            <span class="toggle-icon sun">☀️</span>
+            <span class="toggle-icon moon">🌙</span>
+        </button>
 
         <div class="dot"></div>
 
