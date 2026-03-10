@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dimitri Devroe — Ecommerce Specialist</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='50' fill='%232563eb'/></svg>">
     <style>
         :root {
             --bg: #f5f5f5;
@@ -69,6 +70,18 @@
             padding: 0;
         }
 
+        .toggle::before {
+            content: '☀️';
+            position: absolute;
+            top: 50%;
+            left: 6px;
+            transform: translateY(-50%);
+            font-size: 10px;
+            line-height: 1;
+            transition: opacity 0.3s ease;
+            opacity: 1;
+        }
+
         .toggle::after {
             content: '';
             position: absolute;
@@ -79,10 +92,18 @@
             background-color: white;
             border-radius: 50%;
             transition: transform 0.3s ease, background-color 0.3s ease;
+            z-index: 1;
         }
 
         [data-theme="dark"] .toggle {
             background-color: var(--accent);
+        }
+
+        [data-theme="dark"] .toggle::before {
+            content: '🌙';
+            left: auto;
+            right: 6px;
+            opacity: 1;
         }
 
         [data-theme="dark"] .toggle::after {
@@ -135,9 +156,17 @@
         }
 
         .project {
-            padding: 20px 0;
+            padding: 20px 12px;
+            margin: 0 -12px;
             border-bottom: 1px solid var(--border);
-            transition: border-color 0.3s ease;
+            border-radius: 8px;
+            transition: border-color 0.3s ease, background-color 0.2s ease, transform 0.2s ease;
+            cursor: default;
+        }
+
+        .project:hover {
+            background-color: var(--bg);
+            transform: translateX(4px);
         }
 
         .project:first-child {
@@ -171,6 +200,31 @@
             letter-spacing: 1.5px;
             color: var(--text-secondary);
             margin-bottom: 16px;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(16px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .container {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        .dot:hover {
+            animation: pulse 0.8s ease-in-out;
+            cursor: pointer;
         }
 
         @media (max-width: 600px) {
