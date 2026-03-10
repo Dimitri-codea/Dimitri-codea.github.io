@@ -108,12 +108,34 @@
             transform: translateX(20px);
         }
 
-        .dot {
+        .brand-icon {
             width: 28px;
             height: 28px;
-            background-color: var(--accent);
-            border-radius: 50%;
             margin-bottom: 40px;
+            cursor: pointer;
+        }
+
+        .brand-icon .circle {
+            fill: var(--accent);
+            transition: opacity 0.4s ease;
+        }
+
+        .brand-icon .cart {
+            fill: none;
+            stroke: var(--accent);
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .brand-icon:hover .circle {
+            opacity: 0;
+        }
+
+        .brand-icon:hover .cart {
+            opacity: 1;
         }
 
         h1 {
@@ -214,14 +236,9 @@
             animation: fadeInUp 0.6s ease-out;
         }
 
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-        }
-
-        .dot:hover {
-            animation: pulse 0.8s ease-in-out;
-            cursor: pointer;
+        .brand-icon:hover {
+            transform: scale(1.1);
+            transition: transform 0.3s ease;
         }
 
         @media (max-width: 600px) {
@@ -232,6 +249,32 @@
             .toggle {
                 top: 30px;
                 right: 30px;
+                width: 56px;
+                height: 30px;
+                border-radius: 15px;
+            }
+
+            .toggle::after {
+                top: 4px;
+                left: 4px;
+                width: 22px;
+                height: 22px;
+            }
+
+            [data-theme="dark"] .toggle::after {
+                transform: translateX(26px);
+            }
+
+            .toggle-icon {
+                font-size: 13px;
+            }
+
+            .toggle-icon.sun {
+                left: 7px;
+            }
+
+            .toggle-icon.moon {
+                right: 7px;
             }
         }
     </style>
@@ -243,12 +286,19 @@
             <span class="toggle-icon moon">🌙</span>
         </button>
 
-        <div class="dot"></div>
+        <svg class="brand-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <circle class="circle" cx="12" cy="12" r="12"/>
+            <g class="cart">
+                <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+                <line x1="3" y1="6" x2="21" y2="6"/>
+                <path d="M16 10a4 4 0 0 1-8 0"/>
+            </g>
+        </svg>
 
         <h1>Helping DTC brands grow.</h1>
 
         <div class="section">
-            <p>Dimitri Devroe — ecommerce</p>
+            <p><strong>Dimitri Devroe</strong> — ecommerce</p>
             <p>specialist focused on acquisition</p>
             <p>and retention for direct-to-</p>
             <p>consumer brands.</p>
@@ -258,7 +308,7 @@
             <p class="secondary">I partner with founders and teams</p>
             <p class="secondary">to build scalable growth engines —</p>
             <p class="secondary">from paid media and CRO to email</p>
-            <p class="secondary">flows and loyalty programs.</p>
+            <p class="secondary">flows and lifecycle marketing.</p>
         </div>
 
         <div class="spacer"></div>
