@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dimitri Devroe — Ecommerce Specialist</title>
+    <meta name="description" content="Helping DTC brands grow through acquisition, retention, and scalable growth engines.">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='50' fill='%232563eb'/></svg>">
     <style>
         :root {
@@ -14,6 +15,7 @@
             --accent: #2563eb;
             --border: #e0e0e0;
             --toggle-bg: #e0e0e0;
+            --tag-bg: rgba(37, 99, 235, 0.08);
         }
 
         [data-theme="dark"] {
@@ -24,6 +26,7 @@
             --accent: #60a5fa;
             --border: #2a2a2a;
             --toggle-bg: #333333;
+            --tag-bg: rgba(96, 165, 250, 0.1);
         }
 
         * {
@@ -54,6 +57,7 @@
             position: relative;
             transition: background-color 0.3s ease;
             box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+            height: fit-content;
         }
 
         .toggle {
@@ -79,13 +83,8 @@
             z-index: 0;
         }
 
-        .toggle-icon.sun {
-            left: 6px;
-        }
-
-        .toggle-icon.moon {
-            right: 6px;
-        }
+        .toggle-icon.sun { left: 6px; }
+        .toggle-icon.moon { right: 6px; }
 
         .toggle::after {
             content: '';
@@ -130,12 +129,11 @@
             transition: opacity 0.4s ease;
         }
 
-        .brand-icon:hover .circle {
-            opacity: 0;
-        }
-
-        .brand-icon:hover .cart {
-            opacity: 1;
+        .brand-icon:hover .circle { opacity: 0; }
+        .brand-icon:hover .cart { opacity: 1; }
+        .brand-icon:hover {
+            transform: scale(1.1);
+            transition: transform 0.3s ease;
         }
 
         h1 {
@@ -174,6 +172,19 @@
             color: var(--accent);
         }
 
+        .spacer {
+            height: 20px;
+        }
+
+        .label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+        }
+
+        /* Projects */
         .project {
             padding: 20px 12px;
             margin: 0 -12px;
@@ -188,7 +199,7 @@
             transform: translateX(4px);
         }
 
-        .project:first-child {
+        .project:first-of-type {
             border-top: 1px solid var(--border);
         }
 
@@ -206,21 +217,103 @@
             display: inline-block;
             font-size: 12px;
             color: var(--accent);
-            margin-top: 6px;
+            background: var(--tag-bg);
+            padding: 2px 10px;
+            border-radius: 4px;
+            margin-top: 8px;
         }
 
-        .spacer {
-            height: 20px;
+        /* Services */
+        .services-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
         }
 
-        .label {
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
+        .service {
+            padding: 20px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            transition: border-color 0.3s ease, background-color 0.2s ease;
+        }
+
+        .service:hover {
+            border-color: var(--accent);
+            background-color: var(--bg);
+        }
+
+        .service-icon {
+            font-size: 18px;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .service-title {
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 6px;
+        }
+
+        .service-desc {
             color: var(--text-secondary);
-            margin-bottom: 16px;
+            font-size: 13px;
+            line-height: 1.5;
         }
 
+        /* Stats */
+        .stats {
+            display: flex;
+            gap: 32px;
+            padding: 24px 0;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .stat {
+            flex: 1;
+        }
+
+        .stat-number {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--accent);
+            line-height: 1.2;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
+        /* Social links */
+        .social-links {
+            display: flex;
+            gap: 20px;
+            margin-top: 12px;
+        }
+
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .social-link:hover {
+            color: var(--accent);
+        }
+
+        .social-link svg {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+        }
+
+        /* Animations */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -236,11 +329,18 @@
             animation: fadeInUp 0.6s ease-out;
         }
 
-        .brand-icon:hover {
-            transform: scale(1.1);
-            transition: transform 0.3s ease;
+        .fade-section {
+            opacity: 0;
+            transform: translateY(12px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
         }
 
+        .fade-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
         @media (max-width: 600px) {
             .container {
                 padding: 40px 30px 60px;
@@ -269,12 +369,20 @@
                 font-size: 13px;
             }
 
-            .toggle-icon.sun {
-                left: 7px;
+            .toggle-icon.sun { left: 7px; }
+            .toggle-icon.moon { right: 7px; }
+
+            .services-grid {
+                grid-template-columns: 1fr;
             }
 
-            .toggle-icon.moon {
-                right: 7px;
+            .stats {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .social-links {
+                flex-wrap: wrap;
             }
         }
     </style>
@@ -313,7 +421,57 @@
 
         <div class="spacer"></div>
 
-        <div class="section">
+        <!-- Stats -->
+        <div class="section fade-section">
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Brands scaled</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">8+</div>
+                    <div class="stat-label">Years in DTC</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">3x</div>
+                    <div class="stat-label">Avg. ROAS lift</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="spacer"></div>
+
+        <!-- Services -->
+        <div class="section fade-section">
+            <div class="label">What I do</div>
+            <div class="services-grid">
+                <div class="service">
+                    <span class="service-icon">&#9670;</span>
+                    <div class="service-title">Paid Acquisition</div>
+                    <div class="service-desc">Meta, Google, TikTok ads — strategy to execution at scale.</div>
+                </div>
+                <div class="service">
+                    <span class="service-icon">&#9674;</span>
+                    <div class="service-title">CRO & Analytics</div>
+                    <div class="service-desc">Data-driven optimization to increase conversion rates.</div>
+                </div>
+                <div class="service">
+                    <span class="service-icon">&#9678;</span>
+                    <div class="service-title">Email & Lifecycle</div>
+                    <div class="service-desc">Retention flows, segmentation, and lifecycle campaigns.</div>
+                </div>
+                <div class="service">
+                    <span class="service-icon">&#9672;</span>
+                    <div class="service-title">Growth Strategy</div>
+                    <div class="service-desc">Full-funnel planning from brand awareness to repeat purchase.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="spacer"></div>
+
+        <!-- Projects -->
+        <div class="section fade-section">
             <div class="label">Selected projects</div>
 
             <div class="project">
@@ -337,8 +495,20 @@
 
         <div class="spacer"></div>
 
-        <div class="section">
+        <!-- Contact -->
+        <div class="section fade-section">
             <p>Let's work together — <a href="mailto:dimitri@dimitridevroe.com">get in touch</a>.</p>
+
+            <div class="social-links">
+                <a href="https://linkedin.com/in/dimitridevroe" class="social-link" target="_blank" rel="noopener">
+                    <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                    LinkedIn
+                </a>
+                <a href="https://twitter.com/dimitridevroe" class="social-link" target="_blank" rel="noopener">
+                    <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                    X / Twitter
+                </a>
+            </div>
         </div>
     </div>
 
@@ -356,6 +526,17 @@
         if (saved) {
             document.documentElement.setAttribute('data-theme', saved);
         }
+
+        // Fade-in sections on scroll/load
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-section').forEach(el => observer.observe(el));
     </script>
 </body>
 </html>
